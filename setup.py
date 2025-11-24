@@ -1,31 +1,37 @@
-from setuptools import setup, find_packages 
+from setuptools import find_packages,setup
 from typing import List
 
-def get_requirements() -> List[str]:
-    #This function will return the list of requirements
-
-    requirement_list: List[str] = []
-
+def get_requirements()->List[str]:
+    """
+    This function will return list of requirements
+    """
+    requirement_list:List[str] = []
+    
     try:
-        with open("requirements.txt", "r") as file:
+        # Open and read the requirements.txt file
+        with open('requirements.txt', 'r') as file:
+            # Read lines from the file
             lines = file.readlines()
-
+            # Process each line
             for line in lines:
+                # Strip whitespace and newline characters
                 requirement = line.strip()
-                if requirement and requirement != "-e .":
+                # Ignore empty lines and -e .
+                if requirement and requirement != '-e .':
                     requirement_list.append(requirement)
     except FileNotFoundError:
         print("requirements.txt file not found.")
+
     
+        
     return requirement_list
 print(get_requirements())
 
 setup(
-    name="AI_Trip_Planner",
-    version="0.1.0",
+    name="AI-TRAVEL-PLANNER",
+    version="0.0.1",
     author="Nupur Dashputre",
     author_email="nupurdashputre@gmail.com",
-    packages=find_packages(),
+    packages = find_packages(),
     install_requires=get_requirements()
 )
-            
