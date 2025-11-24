@@ -12,136 +12,109 @@ st.set_page_config(
 )
 
 st.markdown("""
-    <style>
-        /* Main Page Background */
-        .main {
-            background-color: #0B1E34; /* Deep Navy */
-        }
+<style>
 
-        /* Chat Containers */
-        .chat-container {
-            padding: 1.2rem;
-            border-radius: 14px;
-            background-color: rgba(255,255,255,0.04);
-            backdrop-filter: blur(6px);
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
-            margin-bottom: 1rem;
-        }
+:root {
+    --footer-height: 64px;
+}
 
-        /* User Message Bubble */
-        .user-msg {
-            background-color: #C9E4FF;  /* Light Blue */
-            padding: 0.9rem;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-            color: #0B1E34;  /* Navy text */
-        }
+.main {
+    background-color: #0B1E34; 
+    min-height: 100vh;
+    position: relative;
+}
 
-        /* Bot Message Bubble */
-        .bot-msg {
-            background-color: #D1F2EB;  /* Soft Teal */
-            padding: 0.9rem;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-            color: #0B1E34; /* Navy text */
-        }
+.block-container {
+    padding-bottom: calc(var(--footer-height) + 24px);
+}
 
-        /* Title Gradient */
-        .title-text {
-            font-size: 2.8rem !important;
-            font-weight: 800;
-            background: linear-gradient(90deg, #3BC9DB, #228BE6); /* Aqua → Blue */
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-align: center;
-            margin-bottom: -4px;
-        }
+.chat-container {
+    padding: 1.2rem;
+    border-radius: 14px;
+    background-color: rgba(255,255,255,0.04);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+    margin-bottom: 1rem;
+}
 
-        .subtitle-text {
-            font-size: 1.25rem !important;
-            color: #A8CBEF; /* Soft Blue */
-            text-align: center;
-            margin-bottom: 30px;
-        }
+.user-msg {
+    background-color: #C9E4FF;
+    padding: 0.9rem;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #0B1E34;
+}
 
-        .footer-note {
-            text-align:center;
-            color: #B8C8D4;
-            margin-top: 40px;
-            font-size: 0.85rem;
-        }
+.bot-msg {
+    background-color: #D1F2EB;
+    padding: 0.9rem;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #0B1E34;
+}
 
-        /* Input Box */
-        .stTextInput>div>div>input {
-            background-color: #11263F; /* Navy input */
-            color: #E3F2FD;
-            border-radius: 10px;
-            border: 1px solid #3BC9DB;
-        }
+.title-text {
+    font-size: 2.8rem !important;
+    font-weight: 800;
+    background: linear-gradient(90deg, #3BC9DB, #228BE6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin-bottom: -4px;
+}
 
-        /* Button */
-        .stButton>button {
-            background: linear-gradient(90deg, #3BC9DB, #228BE6);
-            color: white;
-            border-radius: 10px;
-            padding: 0.6rem 1.4rem;
-            font-size: 1.1rem;
-            border: none;
-        }
+.subtitle-text {
+    font-size: 1.25rem !important;
+    color: #A8CBEF;
+    text-align: center;
+    margin-bottom: 30px;
+}
 
-        .stButton>button:hover {
-            opacity: 0.9;
-            transform: scale(1.02);
-        }
-    </style>
+.stTextInput>div>div>input {
+    background-color: #11263F;
+    color: #E3F2FD;
+    border-radius: 10px;
+    border: 1px solid #3BC9DB;
+}
+
+.stButton>button {
+    background: linear-gradient(90deg, #3BC9DB, #228BE6);
+    color: white;
+    border-radius: 10px;
+    padding: 0.6rem 1.4rem;
+    font-size: 1.1rem;
+    border: none;
+}
+
+.stButton>button:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+.footer-note {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: var(--footer-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    backdrop-filter: blur(6px);
+    color: #B8C8D4;
+    font-size: 0.9rem;
+    box-shadow: 0 -6px 18px rgba(2,10,20,0.4);
+}
+
+@media (max-width: 600px) {
+    :root { --footer-height: 56px; }
+}
+
+</style>
 """, unsafe_allow_html=True)
-
-st.markdown(
-    """
-    <style>
-    :root {
-        --footer-height: 64px; /* change if you want a taller/shorter footer */
-    }
-
-    /* ensure full viewport height */
-    .main {
-        min-height: 100vh;
-        position: relative;
-    }
-
-    /* give the page content bottom padding so it never sits under the fixed footer */
-    .block-container {
-        padding-bottom: calc(var(--footer-height) + 24px); /* extra breathing room */
-    }
-
-    /* style the footer and fix it to bottom */
-    .footer-note {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        height: var(--footer-height);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        /* visual styles — tweak to match your theme */
-        backdrop-filter: blur(6px);
-        color: #B8C8D4;
-        font-size: 0.9rem;
-        box-shadow: 0 -6px 18px rgba(2,10,20,0.4);
-    }
-
-    /* small-screen tweak: reduce footer height */
-    @media (max-width: 600px) {
-        :root { --footer-height: 56px; }
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
 
 
 st.markdown("<div class='title-text'>WanderBot</div>", unsafe_allow_html=True)
