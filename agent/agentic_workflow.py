@@ -15,13 +15,26 @@ from tools.currency_conversion_tool import CurrencyConversionTool
 class GraphBuilder():
 
     def __init__(self):
-        pass
+        self.system_prompt = SYSTEM_PROMPT
 
-    def agent_function(self):
-        pass
+    def agent_function(self, state: MessageState):
+        user_query = state["messages"]
+        input_query = [self.system_prompt] + user_query
+        response = self.llm_with_tools.invoke(input_query)
+        return {"messages": [response]}
+ 
 
     def build_graph(self):
-        pass
+        graph_builder = StateGraph(MessageState)
+        graph_builder.add_node("agent", self.agent_function)
+        graph_builder.add_node("tools", ToolNode(tools=self.tools))
+        graph_builder.add_edge(START, "agent")
+        graph_builder.add_conditional_edges("agent", tools_condition)
+        graph_builder.add_edge("agent", "tools")
+        graph_builder.add_edge("tools", END)
+        self.graph = graph_builder.compile()
+        return self.graph
+
 
     def __call__(self):
-        pass
+        return self.build_graph()
