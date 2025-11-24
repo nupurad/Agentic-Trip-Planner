@@ -35,6 +35,6 @@ class GraphBuilder():
         self.graph = graph_builder.compile()
         return self.graph
 
-
+    #called by graph() instance of GraphBuilder class from app.py
     def __call__(self):
         return self.build_graph()
