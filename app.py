@@ -26,8 +26,8 @@ if "messages" not in st.session_state:
 
 st.header("Where you goin'?")
 
-with st.form():
-    user_input = st.text_input("User Input", placeholder="Plan a trip to Goa for 5 days.")
+with st.form("trip_form"):
+    user_input = st.text_input("User Input", placeholder="e.g. Plan a trip to Goa for 5 days.")
     submit_button = st.form_submit_button("Send")
 
 if submit_button and user_input.strip():
