@@ -65,25 +65,24 @@ sudo docker pull agentic-trip-planner:latest
 sudo docker run -d --env-file .env -p 8000:8000 -p 8501:8501 nupurad/ai-trip-planner-agent:latest
 
 ### 8) Use systemd to automatically run image
-sudo nano /etc/systemd/system/agentic-trip-planner.service
-'''
+sudo nano /etc/systemd/system/agentic-trip-planner.service \
+
     [Unit]
     Description=Trip Planner App
     After=docker.service
-    Requires=docker.service
+    Requires=docker.service \
 
     [Service]
     Restart=always
     ExecStart=/usr/bin/docker run --rm -p 8000:8000 -p 8501:8501 --env-file /home/ec2-user/.env nupurad/ai-trip-planner-agent:latest
-    ExecStop=/usr/bin/docker stop agentic-trip-planner
+    ExecStop=/usr/bin/docker stop agentic-trip-planner \
 
     [Install]
-    WantedBy=multi-user.target
-'''
+    WantedBy=multi-user.target \
 
-Ctrl+O 
-Ctrl+Enter
-Ctrl+X
+Ctrl+O \
+Ctrl+Enter \
+Ctrl+X \
 
 sudo systemctl daemon-reload
 
