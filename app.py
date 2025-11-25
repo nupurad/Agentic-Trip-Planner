@@ -118,7 +118,7 @@ st.markdown("""
 
 
 st.markdown("<div class='title-text'>WanderBot</div>", unsafe_allow_html=True)
-st.markdown("<div class='subtitle-text'>Your AI-powered trip planner using LangGraph + FastAPI ✈️</div>", unsafe_allow_html=True)
+st.markdown("<div class='subtitle-text'>Your perfect trip planner powered by LangGraph + FastAPI ✈️</div>", unsafe_allow_html=True)
 
 st.write("")
 

@@ -15,5 +15,3 @@ langchain_tavily
 langchain_groq
 langchain_openai
 langgraph
-
--e .
