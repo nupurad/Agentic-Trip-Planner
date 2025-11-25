@@ -46,13 +46,13 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
 
 ### 4) Containerize (Docker) and push 
-docker buildx build --platform linux/amd64 -t agentic-trip-planner:1.0 .
-docker tag agentic-trip-planner:1.0 nupurad/ai-trip-planner-agent
-docker run -d --env-file .env -p 80:3000 agentic-trip-planner:1.0
+docker buildx build --platform linux/amd64 -t agentic-trip-planner:1.0 . \
+docker tag agentic-trip-planner:1.0 nupurad/ai-trip-planner-agent \
+docker run -d --env-file .env -p 80:3000 agentic-trip-planner:1.0 \
 docker push nupurad/ai-trip-planner-agent 
 
 ### 5) Create EC2 free-tier instance
-AWS console --> download .pem file (t2.micro)
+AWS console --> download .pem file (t2.micro) \
 ssh -i ~/.ssh/your-key.pem ec2-user@ec2-<your-public-IP>.compute-1.amazonaws.com
 
 ### 6) Add env to EC2 instance
@@ -82,7 +82,7 @@ sudo nano /etc/systemd/system/agentic-trip-planner.service \
 
 Ctrl+O \
 Ctrl+Enter \
-Ctrl+X \
+Ctrl+X 
 
 sudo systemctl daemon-reload
 
