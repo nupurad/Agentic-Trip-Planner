@@ -1,4 +1,5 @@
-# WanderBot - An Agentic-AI based Trip Planner Agent (http://3.80.113.62:8501/)
+# WanderBot - An Agentic-AI based Trip Planner Agent 
+### (http://3.80.113.62:8501/)
 
 ### An AI-powered agent capable of planning a trip to any place world-wide using real-time data.
 ### Features:
@@ -52,10 +53,10 @@ docker push nupurad/ai-trip-planner-agent
 
 ### Create EC2 free-tier instance
 AWS console --> download .pem file (t2.micro)
-ssh -i ~/.ssh/your-key.pem ec2-user@ec2-3-80-113-62.compute-1.amazonaws.com
+ssh -i ~/.ssh/your-key.pem ec2-user@ec2-<your-public-IP>.compute-1.amazonaws.com
 
 ### Add env to EC2 instance
-scp -i ai-trip-planner-agent.pem .env ec2-user@3.80.113.62:/home/ec2-user/
+scp -i ai-trip-planner-agent.pem .env ec2-user@<your-public-IP>:/home/ec2-user/
 
 ### Make EC2 instance ready for Docker
 sudo yum install docker
@@ -94,11 +95,11 @@ sudo systemctl status agentic-trip-planner
 
 
 ### Helpful commands
-sudo docker stop <container-id>
-sudo docker rm <container-id>
-sudo docker images
-sudo docker ps
-sudo docker logs <container-id>
+    1. sudo docker stop <container-id>
+    2. sudo docker rm <container-id>
+    3. sudo docker images
+    4. sudo docker ps
+    5. sudo docker logs <container-id>
 
 
 
